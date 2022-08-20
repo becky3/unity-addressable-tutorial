@@ -338,7 +338,7 @@ MonoBehaviour:
       Culture=neutral, PublicKeyToken=null
     m_EditorAssetChanged: 0
   newSpriteAddress: Assets/Images/atras.png[atras_1]
-  useAddress: 1
+  useAddress: 0
 --- !u!212 &1853215755
 SpriteRenderer:
   m_ObjectHideFlags: 0
