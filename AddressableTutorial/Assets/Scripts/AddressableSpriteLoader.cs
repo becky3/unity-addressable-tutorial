@@ -29,10 +29,9 @@ public class AddressableSpriteLoader : MonoBehaviour
     public string newAtlasedSpriteAddress;
 
     [Header("atlasedSpriteWithName")]
-    //public AssetReferenceT<SpriteAtlas> newAtlas;
-    //public string spriteAtlasAddress;
-    //public string atlasedSpriteName;
-    
+    public AssetReferenceT<SpriteAtlas> newAtlas;
+    public string spriteAtlasAddress;
+    public string atlasedSpriteName;
 
     private SpriteRenderer spriteRenderer;
     private AsyncOperationHandle<SpriteAtlas> atlasOperation;
@@ -60,8 +59,8 @@ public class AddressableSpriteLoader : MonoBehaviour
                     break;
 
                 case SpriteType.AtlasedSpriteWithName:
-                    //atlasOperation = Addressables.LoadAssetAsync<SpriteAtlas>(spriteAtlasAddress);
-                    //atlasOperation.Completed += SpriteAtlasLoaded;
+                    atlasOperation = Addressables.LoadAssetAsync<SpriteAtlas>(spriteAtlasAddress);
+                    atlasOperation.Completed += SpriteAtlasLoaded;
                     break;
             }
 
@@ -81,8 +80,8 @@ public class AddressableSpriteLoader : MonoBehaviour
                     break;
 
                 case SpriteType.AtlasedSpriteWithName:
-                    //atlasOperation = newAtlas.LoadAssetAsync();
-                    //atlasOperation.Completed += SpriteAtlasLoaded;
+                    atlasOperation = newAtlas.LoadAssetAsync();
+                    atlasOperation.Completed += SpriteAtlasLoaded;
                     break;
             }
         }
@@ -96,7 +95,7 @@ public class AddressableSpriteLoader : MonoBehaviour
             case AsyncOperationStatus.None:
                 break;
             case AsyncOperationStatus.Succeeded:
-                //spriteRenderer.sprite = obj.Result.GetSprite(atlasedSpriteName); ;
+                spriteRenderer.sprite = obj.Result.GetSprite(atlasedSpriteName);
                 break;
             case AsyncOperationStatus.Failed:
                 Debug.LogError("Sprite load failed. Using default sprite.");
