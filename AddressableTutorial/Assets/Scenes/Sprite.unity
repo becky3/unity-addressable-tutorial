@@ -331,14 +331,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0a5c499d6a10a254ab26dd61f9ef3fda, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  newSprite:
-    m_AssetGUID: 438d33d5628601245b0ebae7350ef02b
-    m_SubObjectName: atras_2
+  newAtlasedSprite:
+    m_AssetGUID: f2cf55936f7dbfd409ca34d351a4a72f
+    m_SubObjectName: atras_3
     m_SubObjectType: UnityEngine.Sprite, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
     m_EditorAssetChanged: 0
-  newSpriteAddress: Assets/Images/atras.png[atras_1]
-  useAddress: 0
+  spriteAtlasAddress: Assets/Images/Demo Sprite Atlas.spriteatlasv2
+  atlasedSpriteName: atras_2
+  newAtlasedSpriteAddress: Assets/Images/Demo Sprite Atlas.spriteatlasv2[atras_3]
+  useAddress: 1
 --- !u!212 &1853215755
 SpriteRenderer:
   m_ObjectHideFlags: 0

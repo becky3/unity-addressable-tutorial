@@ -29,6 +29,10 @@ MonoBehaviour:
     m_Address: Assets/Images/atras.png
     m_ReadOnly: 0
     m_SerializedLabels: []
+  - m_GUID: f2cf55936f7dbfd409ca34d351a4a72f
+    m_Address: Assets/Images/Demo Sprite Atlas.spriteatlasv2
+    m_ReadOnly: 0
+    m_SerializedLabels: []
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 2fc0f398c0a4de347a2a2450d96430ff, type: 2}
   m_SchemaSet:
