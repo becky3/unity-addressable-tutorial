@@ -21,10 +21,9 @@ public class AddressableSpriteLoader : MonoBehaviour
     private SpriteType spriteType;
 
     [Header("Sprite")]
-    //public AssetReferenceSprite newSprite;
-    //public string newSpriteAddress;
+    public AssetReferenceSprite newSprite;
+    public string newSpriteAddress;
 
-    
     [Header("AtlasedSprite")]
     public AssetReferenceAtlasedSprite newAtlasedSprite;
     public string newAtlasedSpriteAddress;
@@ -51,8 +50,8 @@ public class AddressableSpriteLoader : MonoBehaviour
             switch (spriteType) 
             {
                 case SpriteType.Normal:
-                    //spriteOperation = Addressables.LoadAssetAsync<Sprite>(newSpriteAddress);
-                    //spriteOperation.Completed += SpriteLoaded;
+                    spriteOperation = Addressables.LoadAssetAsync<Sprite>(newSpriteAddress);
+                    spriteOperation.Completed += SpriteLoaded;
                     break;
 
                 case SpriteType.AtlasedSprite:
@@ -72,8 +71,8 @@ public class AddressableSpriteLoader : MonoBehaviour
             switch (spriteType)
             {
                 case SpriteType.Normal:
-                    //spriteOperation = newSprite.LoadAssetAsync();
-                    //spriteOperation.Completed += SpriteLoaded;
+                    spriteOperation = newSprite.LoadAssetAsync();
+                    spriteOperation.Completed += SpriteLoaded;
                     break;
 
                 case SpriteType.AtlasedSprite:
@@ -122,11 +121,11 @@ public class AddressableSpriteLoader : MonoBehaviour
 
     private void OnDestroy()
     {
-        //if (spriteOperation.IsValid())
-        //{
-        //    Addressables.Release(spriteOperation);
-        //    Debug.Log("Successfully released sprite load operation.");
-        //}
+        if (spriteOperation.IsValid())
+        {
+            Addressables.Release(spriteOperation);
+            Debug.Log("Successfully released sprite load operation.");
+        }
 
         if (atlasOperation.IsValid())
         {
