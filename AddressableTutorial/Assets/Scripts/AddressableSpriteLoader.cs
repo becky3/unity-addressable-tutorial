@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 
 using UnityEngine.AddressableAssets;
@@ -9,17 +10,34 @@ using UnityEngine.U2D;
 
 public class AddressableSpriteLoader : MonoBehaviour
 {
+    public enum SpriteType
+    {
+        Normal,
+        AtlasedSprite,
+        AtlasedSpriteWithName,
+    }
+
+    [SerializeField]
+    private SpriteType spriteType;
+
+    [Header("Sprite")]
     //public AssetReferenceSprite newSprite;
     //public string newSpriteAddress;
-    private AsyncOperationHandle<Sprite> spriteOperation;
 
+    
+    [Header("AtlasedSprite")]
     public AssetReferenceAtlasedSprite newAtlasedSprite;
-    //public AssetReferenceT<SpriteAtlas> newAtlas;
-    public string spriteAtlasAddress;
-    public string atlasedSpriteName;
     public string newAtlasedSpriteAddress;
+
+    [Header("atlasedSpriteWithName")]
+    //public AssetReferenceT<SpriteAtlas> newAtlas;
+    //public string spriteAtlasAddress;
+    //public string atlasedSpriteName;
+    
+
     private SpriteRenderer spriteRenderer;
     private AsyncOperationHandle<SpriteAtlas> atlasOperation;
+    private AsyncOperationHandle<Sprite> spriteOperation;
 
     public bool useAddress;
 
@@ -30,27 +48,44 @@ public class AddressableSpriteLoader : MonoBehaviour
 
         if (useAddress)
         {
-            //spriteOperation = Addressables.LoadAssetAsync<Sprite>(newSpriteAddress);
-            //spriteOperation.Completed += SpriteLoaded;
+            switch (spriteType) 
+            {
+                case SpriteType.Normal:
+                    //spriteOperation = Addressables.LoadAssetAsync<Sprite>(newSpriteAddress);
+                    //spriteOperation.Completed += SpriteLoaded;
+                    break;
 
-            spriteOperation = Addressables.LoadAssetAsync<Sprite>(newAtlasedSpriteAddress);
-            spriteOperation.Completed += SpriteLoaded;
+                case SpriteType.AtlasedSprite:
+                    spriteOperation = Addressables.LoadAssetAsync<Sprite>(newAtlasedSpriteAddress);
+                    spriteOperation.Completed += SpriteLoaded;
+                    break;
 
-            //atlasOperation = Addressables.LoadAssetAsync<SpriteAtlas>(spriteAtlasAddress);
-            //atlasOperation.Completed += SpriteAtlasLoaded;
+                case SpriteType.AtlasedSpriteWithName:
+                    //atlasOperation = Addressables.LoadAssetAsync<SpriteAtlas>(spriteAtlasAddress);
+                    //atlasOperation.Completed += SpriteAtlasLoaded;
+                    break;
+            }
 
         }
         else
         {
-            //spriteOperation = newSprite.LoadAssetAsync();
-            //spriteOperation.Completed += SpriteLoaded;
+            switch (spriteType)
+            {
+                case SpriteType.Normal:
+                    //spriteOperation = newSprite.LoadAssetAsync();
+                    //spriteOperation.Completed += SpriteLoaded;
+                    break;
 
-            spriteOperation = newAtlasedSprite.LoadAssetAsync();
-            spriteOperation.Completed += SpriteLoaded;
+                case SpriteType.AtlasedSprite:
+                    spriteOperation = newAtlasedSprite.LoadAssetAsync();
+                    spriteOperation.Completed += SpriteLoaded;
+                    break;
 
-            //atlasOperation = newAtlas.LoadAssetAsync();
-            //atlasOperation.Completed += SpriteAtlasLoaded;
-
+                case SpriteType.AtlasedSpriteWithName:
+                    //atlasOperation = newAtlas.LoadAssetAsync();
+                    //atlasOperation.Completed += SpriteAtlasLoaded;
+                    break;
+            }
         }
 
     }
@@ -62,7 +97,7 @@ public class AddressableSpriteLoader : MonoBehaviour
             case AsyncOperationStatus.None:
                 break;
             case AsyncOperationStatus.Succeeded:
-                spriteRenderer.sprite = obj.Result.GetSprite(atlasedSpriteName); ;
+                //spriteRenderer.sprite = obj.Result.GetSprite(atlasedSpriteName); ;
                 break;
             case AsyncOperationStatus.Failed:
                 Debug.LogError("Sprite load failed. Using default sprite.");
