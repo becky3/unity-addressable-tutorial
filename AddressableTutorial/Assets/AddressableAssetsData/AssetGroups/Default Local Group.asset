@@ -33,6 +33,14 @@ MonoBehaviour:
     m_Address: Assets/Images/Demo Sprite Atlas.spriteatlasv2
     m_ReadOnly: 0
     m_SerializedLabels: []
+  - m_GUID: 16ef075badedfd949b8a5d9329d300a9
+    m_Address: Assets/Scenes/LoadTargetScene.unity
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: bd0399f2ea3dc0249bb74e828be6c0d1
+    m_Address: Assets/Images/defaultImage.png
+    m_ReadOnly: 0
+    m_SerializedLabels: []
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 2fc0f398c0a4de347a2a2450d96430ff, type: 2}
   m_SchemaSet:
